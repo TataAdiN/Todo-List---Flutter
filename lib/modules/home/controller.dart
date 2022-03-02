@@ -9,6 +9,7 @@ class HomeController extends GetxController{
 
   final formKey = GlobalKey<FormState>();
   final formCtrl = TextEditingController();
+  final chipIndex = 0.obs;
   final tasks = <Task>[].obs;
 
   @override
@@ -16,5 +17,9 @@ class HomeController extends GetxController{
     super.onInit();
     tasks.assignAll(taskRepository.readTasks());
     ever(tasks, (_) => taskRepository.writeTasks(tasks));
+  }
+
+  void changeIconIndex(int value){
+    chipIndex.value = value;
   }
 }
