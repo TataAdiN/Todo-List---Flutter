@@ -74,7 +74,11 @@ class AddCard extends StatelessWidget {
                       ),
                       minimumSize: const Size(150, 40)
                     ),
-                    onPressed: () {}, 
+                    onPressed: () {
+                      if(homeCtrl.formKey.currentState!.validate()){
+                        
+                      }
+                    }, 
                     child: const Text('Confirm')
                   )
                 ],
