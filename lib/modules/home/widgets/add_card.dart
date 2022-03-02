@@ -22,7 +22,30 @@ class AddCard extends StatelessWidget {
           await Get.defaultDialog(
             titlePadding: EdgeInsets.symmetric(vertical: 5.0.wp),
             radius: 5,
-            title: 'Task Type'
+            title: 'Task Type',
+            content: Form(
+              key : homeCtrl.formKey,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal : 3.0.wp),
+                    child: TextFormField(
+                      controller: homeCtrl.formCtrl,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Title',
+                      ),
+                      validator: (value) {
+                        if(value == null || value.trim().isEmpty){
+                          return 'Please enter your task title';
+                        }
+                        return null;
+                      },
+                    ),
+                  )
+                ],
+              )
+            )
           );
         },
         child: DottedBorder(
