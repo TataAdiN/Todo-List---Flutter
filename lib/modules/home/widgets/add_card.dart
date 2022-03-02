@@ -66,6 +66,17 @@ class AddCard extends StatelessWidget {
                       ).toList(),
                     ),
                   ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)
+                      ),
+                      minimumSize: const Size(150, 40)
+                    ),
+                    onPressed: () {}, 
+                    child: const Text('Confirm')
+                  )
                 ],
               )
             )
