@@ -1,8 +1,10 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:notes_app/core/utils/extensions.dart';
 import 'package:notes_app/core/values/colors.dart';
+import 'package:notes_app/data/models/task.dart';
 import 'package:notes_app/modules/home/controller.dart';
 import 'package:notes_app/widgets/icons.dart';
 
@@ -76,7 +78,18 @@ class AddCard extends StatelessWidget {
                     ),
                     onPressed: () {
                       if(homeCtrl.formKey.currentState!.validate()){
-                        
+                        int icon = icons[homeCtrl.chipIndex.value].icon!.codePoint;
+                        String color = icons[homeCtrl.chipIndex.value].color!.toHex();
+
+                        var task = Task(
+                          title: homeCtrl.formCtrl.text,
+                          icon: icon, 
+                          color: color
+                        );
+                        Get.back();
+                        homeCtrl.addTask(task) ?
+                        EasyLoading.showSuccess('Create task success') : 
+                        EasyLoading.showError('Duplicated task');
                       }
                     }, 
                     child: const Text('Confirm')
@@ -85,6 +98,8 @@ class AddCard extends StatelessWidget {
               )
             )
           );
+          homeCtrl.formCtrl.clear();
+          homeCtrl.changeIconIndex(0);
         },
         child: DottedBorder(
           color: Colors.grey[400]!,
