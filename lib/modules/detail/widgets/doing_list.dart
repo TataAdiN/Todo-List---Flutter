@@ -26,22 +26,30 @@ class DoingList extends StatelessWidget {
             physics: const ClampingScrollPhysics(),
             children: [
                 ...homeCtrl.doingTodos
-                    .map((element) => Row(
-                          children: [
-                            SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: Checkbox(
-                                fillColor: MaterialStateProperty.resolveWith((states) => Colors.grey),
-                                value: element['done'],
-                                onChanged: (value) {
-                                  homeCtrl.doneTodo();
-                                },
+                    .map((element) => Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 3.0.wp, horizontal: 9.0.wp),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: Checkbox(
+                                  fillColor: MaterialStateProperty.resolveWith(
+                                      (states) => Colors.grey),
+                                  value: element['done'],
+                                  onChanged: (value) {
+                                    homeCtrl.doneTodo();
+                                  },
+                                ),
                               ),
-                            ),
-                            Text(element['title'].toString(),
-                            overflow: TextOverflow.ellipsis)
-                          ],
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 4.0.wp),
+                                child: Text(element['title'].toString(),
+                                    overflow: TextOverflow.ellipsis),
+                              )
+                            ],
+                          ),
                         ))
                     .toList(),
               ]));

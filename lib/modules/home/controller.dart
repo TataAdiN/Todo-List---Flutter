@@ -83,6 +83,7 @@ class HomeController extends GetxController{
 
   bool addTodo(String title){
     var todo = {"title" : title, "done" : false};
+
     if(doingTodos.any((element) => mapEquals<String, dynamic>(todo, element))){
       return false;
     }
@@ -95,11 +96,13 @@ class HomeController extends GetxController{
   }
 
   void updateTodo(){
+    print("--- DEBUGGING HERE ---");
     var newTodos = <Map<String, dynamic>>[];
     newTodos.addAll([
       ...doingTodos,
       ...doneTodos
     ]);
+    print(newTodos);
     var newTask = task.value!.copyWith(todos: newTodos);
     int oldIdx = tasks.indexOf(task.value);
     tasks[oldIdx] = newTask;

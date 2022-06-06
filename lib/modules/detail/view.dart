@@ -26,9 +26,9 @@ class DetailPage extends StatelessWidget {
                   children: [
                     IconButton(
                         onPressed: () {
-                          homeCtrl.formCtrl.clear();
                           homeCtrl.updateTodo();
                           homeCtrl.changeTask(null);
+                          homeCtrl.formCtrl.clear();
                           Get.back();
                         },
                         icon: const Icon(Icons.arrow_back))
